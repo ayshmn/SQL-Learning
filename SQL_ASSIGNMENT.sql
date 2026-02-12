@@ -15,7 +15,7 @@ Course_id INT PRIMARY KEY,
 Course_Name VARCHAR(100) NOT NULL,
 Price Decimal(10,2) CHECK (Price>=0),
 Instructor_id INT,
-FOREIGN KEY(Instructor_id) REFERENCES Instructors(Istructor_id)
+FOREIGN KEY(Instructor_id) REFERENCES Instructors(Instructor_id)
 );
 
 CREATE TABLE Enrollment(
