@@ -1,6 +1,8 @@
 CREATE DATABASE Courses_Institute;
 USE Courses_Institute;
 
+--Task 1
+  
 CREATE TABLE Instructors(
 Instructor_id INT auto_increment PRIMARY KEY,
 First_Name VARCHAR(50) NOT NULL,
@@ -25,6 +27,8 @@ Grade INT CHECK (Grade BETWEEN 0 AND 100),
 FOREIGN KEY(Course_id) REFERENCES Courses(Course_id)
 );
 
+--Task 2
+  
 INSERT INTO Instructors (First_Name, Last_Name, Email)
 VALUES
 ('Ayesha','M','ayesha@gmail.com'),
@@ -58,6 +62,8 @@ WHERE Course_id = 2;
 
 DELETE FROM Enrollment
 WHERE Enrollment_id = 101;
+
+--Task 3
 
 SELECT * FROM courses
 WHERE Price BETWEEN 20000 AND 50000;
