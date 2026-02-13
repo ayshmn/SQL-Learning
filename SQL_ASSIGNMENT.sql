@@ -76,3 +76,61 @@ WHERE Instructor_id IN (1,3,5);
 
 SELECT * FROM Courses 
 ORDER BY Price DESC;
+
+--Task 4
+
+SELECT SUM(
+       (SELECT Price
+        FROM courses
+        WHERE Courses.Course_id = Enrollment.Course_id)
+        ) AS Total_Revenue
+        FROM Enrollment;
+
+SELECT Instructor_id, COUNT(*) AS Total_Courses
+FROM courses
+GROUP BY Instructor_id;
+
+SELECT Instructor_id, COUNT(*) AS Total_Courses
+FROM courses
+GROUP BY Instructor_id
+HAVING COUNT(*) > 2;
+
+SELECT Course_id, AVG(Grade) AS Avg_Grade
+FROM Enrollment 
+GROUP BY Course_id;
+
+--Task 5
+
+SELECT First_Name, Course_Name
+FROM  Instructors i
+INNER JOIN Courses c
+ON i.Instructor_id = c.Course_id
+INNER JOIN Enrollment e
+ON e.Course_id = c.Course_id;
+
+SELECT 
+Istructor_id, First_Name, Course_Name
+FROM Instructors i
+LEFT JOIN Courses c
+ON i.Instructor_id = c.Instructor_id;
+
+--Task 6
+
+SELECT *
+FROM Courses
+WHERE Price < (
+SELECT AVG(Price)
+FROM Courses
+);
+
+WITH Revenue AS (
+SELECT 
+c.Course_id, c.Course_Name, c.Price * COUNT(*) AS Total_Revenue
+FROM Courses c
+JOIN Enrollment e
+ON c.Course_id = e.Course_id
+GROUP BY c.Course_id, c.Course_Name, c.Price
+)
+SELECT * 
+FROM Revenue
+WHERE Total_Revenue >= 50000;
